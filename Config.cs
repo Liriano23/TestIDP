@@ -21,7 +21,8 @@ namespace Idp4
             {
                 new ApiScope("scope1"),
                 new ApiScope("scope2"),
-                new ApiScope("api1", "Full access to API #1")
+                new ApiScope("api1", "Full access to API #1"),
+                new ApiScope("ncf.validation.service")
             };
 
         public static IEnumerable<ApiResource> ApiResources =>
@@ -29,7 +30,7 @@ namespace Idp4
             {
                 new ApiResource("api1", "API #1")
                 {
-                    Scopes = {"api1", "openid"}
+                    Scopes = {"api1", "openid", "ncf.validation.service"}
                 }
             };
 
@@ -70,13 +71,11 @@ namespace Idp4
                     ClientName = "Swagger UI for demo_api",
                     ClientSecrets = {new Secret("secret".Sha256())},
 
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequirePkce = true,
-                    RequireClientSecret = false,
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
 
                     RedirectUris = {"https://localhost:44318/swagger/oauth2-redirect.html", "https://oauth.pstmn.io/v1/callback"},
                     AllowedCorsOrigins = {"https://localhost:44318"},
-                    AllowedScopes = {"openid"}
+                    AllowedScopes = {"ncf.validation.service"}
 
                 }
             };
