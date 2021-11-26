@@ -72,10 +72,11 @@ namespace Idp4
                     ClientSecrets = {new Secret("secret".Sha256())},
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    RequireClientSecret = false,
 
                     RedirectUris = {"https://localhost:44318/swagger/oauth2-redirect.html", "https://oauth.pstmn.io/v1/callback"},
                     AllowedCorsOrigins = {"https://localhost:44318"},
-                    AllowedScopes = {"ncf.validation.service"}
+                    AllowedScopes = {"ncf.validation.service", "openid"}
 
                 }
             };
